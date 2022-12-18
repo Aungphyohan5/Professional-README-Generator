@@ -104,6 +104,14 @@ You can find more of my work at
 `
 // TODO: Create a function to initialize app
 
+const init = () => {
+    promptUser()
+
+        .then((answers) => writeFile('readme.md', generateReadMe(answers)))
+        .then(() => console.log("Successfully created Readme.md"))
+        .catch((err) => console.error(err));
+
+};
 
 // Function call to initialize app
 

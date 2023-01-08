@@ -70,6 +70,23 @@ function renderLicenseBadge(license) {
 }
 
 
+function renderLicenseLink(license) {
+    let licenseLink;
+
+    switch (license) {
+        case 'MIT':
+            licenseLink = `https://mit-license.org/`;
+            break;
+        case 'APACHE_2.0':
+            licenseLink = `https://www.apache.org/licenses/LICENSE-2.0.html`
+            break;
+        default:
+            licenseLink = "";
+            break;
+    }
+    return licenseLink;
+}
+
 
 const generateReadMe = ({ username, email, project, description, license, installation, test, usage, contributing }) =>
     `

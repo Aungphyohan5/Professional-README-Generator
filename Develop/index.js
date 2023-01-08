@@ -1,9 +1,11 @@
-// TODO: Include packages needed for this application
+// packages needed for this application
 const inquirer = require("inquirer")
-const { writeFile } = require('fs').promises;
+const fs = require('fs');
 
-// TODO: Create an array of questions for user input
-// const questions = [];
+
+
+//an array of questions for user input
+
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -31,7 +33,7 @@ const promptUser = () => {
             type: 'checkbox',
             name: 'license',
             message: 'What kind of license should your project have?',
-            choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'NONE'],
+            choices: ['MIT', 'APACHE_2.0', 'GPL_3.0', 'BSD_3', 'NONE'],
         },
         {
             type: 'input',
@@ -56,13 +58,24 @@ const promptUser = () => {
     ]);
 }
 
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) { }
+
+function renderLicenseBadge(license) {
+    let badge = ''
+    if (license == 'MIT') {
+        badge = `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
+    } else if (license == 'APACHE_2.0') {
+        badge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]`
+    }
+    return badge;
+}
+
+
 
 const generateReadMe = ({ username, email, project, description, license, installation, test, usage, contributing }) =>
     `
 # ${project}
 
+# ${renderLicenseBadge(license)}
 
 ## Table-of-Contents
 
@@ -76,19 +89,22 @@ const generateReadMe = ({ username, email, project, description, license, instal
 
 
 ## Description
- 
- ${description}
- 
+
+${description}
+
 
 ## Installation
 <pre> <code> ${installation} </code></pre>
-    
+
 
 ## Usage
 <pre><code>${usage}</code></pre>
 
 ## License
-<pre><code>${license}</code></pre>
+${license}
+Please see the more detail from below link
+${renderLicenseSection(license)}
+
 
 ## Contributing
 <pre><code>${contributing}</code></pre>
@@ -98,17 +114,22 @@ const generateReadMe = ({ username, email, project, description, license, instal
 
 
 ## Questions
-If you have any questions about this repo, please contact me at ${email}. 
-You can find more of my work at 
+If you have any questions about this repo, please contact me at ${email}.
+You can find more of my work at
 [@${username}](https://www.github.com/${username})
 `
-// TODO: Create a function to initialize app
 
+function writeToFile(data) {
+    fs.writeFile('readme.md', data, function (err) {
+        if (err) throw err;
+        console.log("Successfully created Readme.md")
+    })
+}
+// //Create a function to initialize app
 const init = () => {
     promptUser()
 
-        .then((answers) => writeFile('readme.md', generateReadMe(answers)))
-        .then(() => console.log("Successfully created Readme.md"))
+        .then(answers => writeToFile(generateReadMe(answers)))
         .catch((err) => console.error(err));
 
 };
@@ -116,3 +137,4 @@ const init = () => {
 // Function call to initialize app
 
 init();
+

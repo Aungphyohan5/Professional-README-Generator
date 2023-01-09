@@ -73,20 +73,25 @@ function renderLicenseBadge(license) {
 function renderLicenseLink(license) {
     let licenseLink;
 
-    switch (license) {
-        case 'MIT':
-            licenseLink = `https://mit-license.org/`;
-            break;
-        case 'APACHE_2.0':
-            licenseLink = `https://www.apache.org/licenses/LICENSE-2.0.html`
-            break;
-        default:
-            licenseLink = "";
-            break;
+    if (license == 'MIT') {
+        licenseLink = `https://mit-license.org/)`;
+    } else if (license == 'APACHE_2.0') {
+        licenseLink = `https://www.apache.org/licenses/LICENSE-2.0.html`;
     }
     return licenseLink;
 }
 
+// TODO: Create a function that returns the license section of README
+// If there is no license, return an empty string
+function renderLicenseSection(license) {
+    let licenseSection = '';
+
+    if (license != 'None') {
+        licenseSection += 'Please see ' + renderLicenseLink(license) + ' to get more details about the license'
+    }
+    return licenseSection;
+}
+console.log(renderLicenseSection('MIT'))
 
 const generateReadMe = ({ username, email, project, description, license, installation, test, usage, contributing }) =>
     `
@@ -115,16 +120,17 @@ ${description}
 
 
 ## Usage
-<pre><code>${usage}</code></pre>
+<code>${usage}</code>
 
 ## License
-${license}
-Please see the more detail from below link
+<pre> <code>${license}</code></pre>
+
 ${renderLicenseSection(license)}
 
 
+
 ## Contributing
-<pre><code>${contributing}</code></pre>
+<code>${contributing}</code>
 
 ## Test
 <pre><code>${test}</code></pre>
@@ -137,12 +143,12 @@ You can find more of my work at
 `
 
 function writeToFile(data) {
-    fs.writeFile('readme.md', data, function (err) {
+    fs.writeFile('generated-readme.md', data, function (err) {
         if (err) throw err;
         console.log("Successfully created Readme.md")
     })
 }
-// //Create a function to initialize app
+// a function to initialize app
 const init = () => {
     promptUser()
 

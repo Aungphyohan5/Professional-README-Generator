@@ -62,10 +62,15 @@ const promptUser = () => {
 function renderLicenseBadge(license) {
     let badge = ''
     if (license == 'MIT') {
-        badge = `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
+        badge = `!License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
     } else if (license == 'APACHE_2.0') {
-        badge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)]`
+        badge = `![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)`
+    } else if (license == 'GPL_3.0') {
+        badge = `![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)`
+    } else if (license == 'BSD_3') {
+        badge = `![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)`
     }
+
     return badge;
 }
 
@@ -77,10 +82,15 @@ function renderLicenseLink(license) {
         licenseLink = `https://mit-license.org`;
     } else if (license == 'APACHE_2.0') {
         licenseLink = `https://www.apache.org/licenses/LICENSE-2.0.html`;
+    } else if (license == 'GPL_3.0') {
+        licenseLink = `https://www.gnu.org/licenses/gpl-3.0`;
+    } else if (license == 'BSD_3') {
+        licenseLink = `https://opensource.org/licenses/BSD-3-Clause`;
     }
+
     return licenseLink;
 }
-
+// console.log(renderLicenseLink('GPL_3.0'))
 
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
@@ -92,7 +102,7 @@ function renderLicenseSection(license) {
     }
     return licenseSection;
 }
-// console.log(renderLicenseSection('MIT'))
+// console.log(renderLicenseSection('GPL_3.0'))
 
 // Generate ReadMe function
 const generateReadMe = ({ username, email, project, description, license, installation, test, usage, contributing }) =>

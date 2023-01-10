@@ -7,7 +7,7 @@ In this project, I developed an application that makes it simple for developers 
 ## Table of Contents
 
 - [Tasks Completed](#TaskCompleted)
-- [Links](#Links)
+- [Link](#Link)
 - [Demo-Video](#Demo-Video)
 - [Installation](#Installation)
 - [Usage](#Usage)
@@ -25,12 +25,10 @@ In this project, I developed an application that makes it simple for developers 
 
 
 
+## Link
 
-## Links
 
-Website URL     -  https://aungphyohan5.github.io/Password-Generator/
-
-Repository URL  -  https://github.com/Aungphyohan5/Password-Generator
+Repository URL  - https://github.com/Aungphyohan5/Professional-README-Generator
 
 
 ## Demo-Video

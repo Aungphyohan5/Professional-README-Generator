@@ -12,7 +12,7 @@ In this project, I developed an application that makes it simple for developers 
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [License](#license)
-- [Credits](#credits)
+
 
 
 ## Tasks Completed

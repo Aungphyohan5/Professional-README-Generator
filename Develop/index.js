@@ -5,8 +5,6 @@ const fs = require('fs');
 
 
 //an array of questions for user input
-
-
 const promptUser = () => {
     return inquirer.prompt([
         {
@@ -58,11 +56,14 @@ const promptUser = () => {
     ]);
 }
 
-// Function for th
+
+
+// Function for the license badges
 function renderLicenseBadge(license) {
     let badge = ''
+
     if (license == 'MIT') {
-        badge = `!License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
+        badge = `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
     } else if (license == 'APACHE_2.0') {
         badge = `![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)`
     } else if (license == 'GPL_3.0') {
@@ -70,11 +71,13 @@ function renderLicenseBadge(license) {
     } else if (license == 'BSD_3') {
         badge = `![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)`
     }
-
     return badge;
 }
 
-// Function for the license link
+
+
+
+// Function for the license links
 function renderLicenseLink(license) {
     let licenseLink;
 
@@ -92,6 +95,8 @@ function renderLicenseLink(license) {
 }
 // console.log(renderLicenseLink('GPL_3.0'))
 
+
+
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
     let licenseSection = '';
@@ -103,6 +108,9 @@ function renderLicenseSection(license) {
     return licenseSection;
 }
 // console.log(renderLicenseSection('GPL_3.0'))
+
+
+
 
 // Generate ReadMe function
 const generateReadMe = ({ username, email, project, description, license, installation, test, usage, contributing }) =>
@@ -153,6 +161,9 @@ If you have any questions about this repo, please contact me at ${email}.
 You can find more of my work at
 [@${username}](https://www.github.com/${username})
 `
+
+
+
 // function to write ReadMe file
 function writeToFile(data) {
     fs.writeFile('./Generated-readme/readme.md', data, function (err) {
@@ -160,16 +171,17 @@ function writeToFile(data) {
         console.log("Successfully created Readme.md")
     })
 }
+
+
+
 // a function to initialize app
 const init = () => {
     promptUser()
 
         .then(answers => writeToFile(generateReadMe(answers)))
         .catch((err) => console.error(err));
-
 };
 
 // Function call to initialize app
-
 init();
 
